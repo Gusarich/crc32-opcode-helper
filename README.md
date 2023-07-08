@@ -1,71 +1,54 @@
-# crc32-opcode-helper README
+# CRC32 Opcode Helper for TON
 
-This is the README for your extension "crc32-opcode-helper". After writing up a brief description, we recommend including the following sections.
+This Visual Studio Code extension helps developers who are working with [The Open Network (TON)](https://ton.org) blockchain technology to generate opcode for TL-B (Type Language - Binary) schemes using crc32.
+
+The extension supports generating request and response opcodes, following all standards and best practices of TON and TL-B.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+-   Automatically calculate the opcode for your TL-B scheme.
+-   Generate Request Opcode.
+-   Generate Response Opcode.
 
-For example if there is an image subfolder under your extension project workspace:
+## Prerequisites
 
-\!\[feature X\]\(images/feature-x.png\)
+-   Visual Studio Code version 1.80.0 or higher.
+-   Basic knowledge of TON blockchain and TL-B scheme. Visit the official TON documentation [here](https://docs.ton.org/develop/data-formats/tl-b-language) for more details.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## How to Use
 
-## Requirements
+1. Install the extension from the Visual Studio Code marketplace.
+2. Open a file containing your TL-B scheme.
+3. Select the scheme that you want to generate opcode for.
+4. Right-click and choose one of the following commands:
+    - `Generate request crc32 opcode` to generate a request opcode.
+    - `Generate response crc32 opcode` to generate a response opcode.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+The selected TL-B scheme will be updated with the calculated opcode.
 
-## Extension Settings
+## Contribution
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-For example:
+## Resources
 
-This extension contributes the following settings:
+-   [TON TL-B Language](https://docs.ton.org/develop/data-formats/tl-b-language)
+-   [TON CRC32](https://docs.ton.org/develop/data-formats/crc32)
 
--   `myExtension.enable`: Enable/disable this extension.
--   `myExtension.thing`: Set to `blah` to do something.
+## License
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of CRC32 Opcode Helper.
 
-### 1.0.1
+## Issues
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+If you encounter any problems or have suggestions, please open an issue [here](https://github.com/Gusarich/crc32-opcode-helper/issues).
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
--   [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
--   Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
--   Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
--   Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
--   [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
--   [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Disclaimer: This extension is not officially related to TON. Please read the [TON documentation](https://docs.ton.org/) for the official resources.

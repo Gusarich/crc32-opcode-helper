@@ -2,7 +2,7 @@
     "name": "crc32-opcode-helper",
     "displayName": "crc32-opcode-helper",
     "description": "Easily generate crc32 opcodes with right click",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.80.0"
     },
