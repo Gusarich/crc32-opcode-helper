@@ -1,26 +1,61 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as crc32 from 'crc-32';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand(
-        'crc32-opcode-helper.generateRequestOpcode',
-        () => {
-            // The code you place here will be executed every time your command is executed
-            // Display a message box to the user
-            vscode.window.showInformationMessage(
-                'Hello World from crc32-opcode-helper!'
-            );
-        }
-    );
-
-    context.subscriptions.push(disposable);
+function calculateRequestOpcode(str: string): string {
+    return (BigInt(crc32.str(str)) & BigInt(0x7fffffff)).toString(16);
 }
 
-// This method is called when your extension is deactivated
+function calculateResponseOpcode(str: string): string {
+    const a = BigInt(crc32.str(str));
+    const b = BigInt(0x80000000);
+    return ((a | b) < 0 ? (a | b) + BigInt('4294967296') : a | b).toString(16);
+}
+
+function processScheme(
+    editor: vscode.TextEditor,
+    opcodeCalculator: (str: string) => string
+) {
+    const document = editor.document;
+    const selection = editor.selection;
+
+    const scheme = document.getText(selection);
+    let constructor = scheme.substring(0, scheme.indexOf(' '));
+    const rest = scheme.substring(scheme.indexOf(' '));
+    if (constructor.includes('#')) {
+        constructor = constructor.substring(0, constructor.indexOf('#'));
+    }
+    const opcode = opcodeCalculator(
+        constructor + ' ' + rest.replace(/\s+/g, ' ').replace(';', '').trim()
+    );
+    const updated = constructor + '#' + opcode + rest;
+    editor.edit((editBuilder) => {
+        editBuilder.replace(selection, updated);
+    });
+}
+
+export function activate(context: vscode.ExtensionContext) {
+    context.subscriptions.push(
+        vscode.commands.registerCommand(
+            'crc32-opcode-helper.generateRequestOpcode',
+            () => {
+                const editor = vscode.window.activeTextEditor;
+                if (editor) {
+                    processScheme(editor, calculateRequestOpcode);
+                }
+            }
+        )
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand(
+            'crc32-opcode-helper.generateResponseOpcode',
+            () => {
+                const editor = vscode.window.activeTextEditor;
+                if (editor) {
+                    processScheme(editor, calculateResponseOpcode);
+                }
+            }
+        )
+    );
+}
+
 export function deactivate() {}
