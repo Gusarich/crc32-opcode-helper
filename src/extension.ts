@@ -25,7 +25,14 @@ function processScheme(
         constructor = constructor.substring(0, constructor.indexOf('#'));
     }
     const opcode = opcodeCalculator(
-        constructor + ' ' + rest.replace(/\s+/g, ' ').replace(';', '').trim()
+        constructor +
+            ' ' +
+            rest
+                .replace(/\(/g, '')
+                .replace(/\)/g, '')
+                .replace(/\s+/g, ' ')
+                .replace(/;/g, '')
+                .trim()
     );
     const updated = constructor + '#' + opcode + rest;
     editor.edit((editBuilder) => {
