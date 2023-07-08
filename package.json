@@ -9,6 +9,11 @@
     "categories": [
         "Other"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Gusarich/crc32-opcode-helper.git"
+    },
+    "publisher": "Gusarich",
     "activationEvents": [],
     "main": "./out/extension.js",
     "contributes": {
