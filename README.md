@@ -6,9 +6,9 @@ The extension supports generating request and response opcodes, following all st
 
 ## Features
 
--   Automatically calculate the opcode for your TL-B scheme.
--   Generate Request Opcode.
--   Generate Response Opcode.
+-   Generate request opcode.
+-   Generate response opcode.
+-   Generate opcode constants for your FunC code based on TL-B scheme.
 
 ## Prerequisites
 
@@ -25,6 +25,8 @@ The extension supports generating request and response opcodes, following all st
     - `Generate response crc32 opcode` to generate a response opcode.
 
 The selected TL-B scheme will be updated with the calculated opcode.
+
+You can also select the scheme with calculated opcodes and use `Generate and copy opcode FunC constants from the selected scheme` option to generate opcode constants for your FunC code and copy them to clipboard.
 
 ## Contribution
 
