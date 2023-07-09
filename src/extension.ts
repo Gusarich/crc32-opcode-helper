@@ -63,6 +63,44 @@ export function activate(context: vscode.ExtensionContext) {
             }
         )
     );
+    context.subscriptions.push(
+        vscode.commands.registerCommand(
+            'crc32-opcode-helper.generateAndCopyOpcodeFuncConsts',
+            () => {
+                const editor = vscode.window.activeTextEditor;
+                if (editor) {
+                    const document = editor.document;
+                    const selection = editor.selection;
+                    const scheme = document.getText(selection);
+
+                    let result = '';
+                    for (const constructorMatch of scheme.matchAll(
+                        /\w+#[a-f0-9]+|\w+\$[01]+|\w+#_|\w+\$_/g
+                    )) {
+                        if (constructorMatch.length > 0) {
+                            const constructor = constructorMatch[0];
+                            if (constructor.includes('#')) {
+                                const [name, tag] = constructor.split('#');
+                                result += `const int op::${name} = 0x${tag};\n`;
+                            }
+                        }
+                    }
+                    vscode.env.clipboard.writeText(result).then(
+                        () => {
+                            vscode.window.showInformationMessage(
+                                'Result copied to clipboard!'
+                            );
+                        },
+                        (error) => {
+                            vscode.window.showErrorMessage(
+                                'Failed to copy: ' + error
+                            );
+                        }
+                    );
+                }
+            }
+        )
+    );
 }
 
 export function deactivate() {}

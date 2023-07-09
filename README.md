@@ -41,9 +41,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Release Notes
 
-### 1.0.0
-
-Initial release of CRC32 Opcode Helper.
+[CHANGELOG](/CHANGELOG.md)
 
 ## Issues
 
