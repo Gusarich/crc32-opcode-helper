@@ -79,10 +79,10 @@ export function activate(context: vscode.ExtensionContext) {
 
                     let result = '';
                     for (const constructorMatch of scheme.matchAll(
-                        /\w+#[a-f0-9]+|\w+\$[01]+|\w+#_|\w+\$_/g
+                        /(\w+#[a-f0-9]{8}).*=\s*(InternalMsgBody)|(ExternalMsgBody);/g
                     )) {
-                        if (constructorMatch.length > 0) {
-                            const constructor = constructorMatch[0];
+                        if (constructorMatch[1]) {
+                            const constructor = constructorMatch[1];
                             if (constructor.includes('#')) {
                                 const [name, tag] = constructor.split('#');
                                 result += `const int op::${name} = 0x${tag};\n`;
