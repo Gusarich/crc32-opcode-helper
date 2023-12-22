@@ -2,13 +2,17 @@ import * as vscode from 'vscode';
 import * as crc32 from 'crc-32';
 
 function calculateRequestOpcode(str: string): string {
-    return (BigInt(crc32.str(str)) & BigInt(0x7fffffff)).toString(16);
+    return (BigInt(crc32.str(str)) & BigInt(0x7fffffff))
+        .toString(16)
+        .padStart(8, '0');
 }
 
 function calculateResponseOpcode(str: string): string {
     const a = BigInt(crc32.str(str));
     const b = BigInt(0x80000000);
-    return ((a | b) < 0 ? (a | b) + BigInt('4294967296') : a | b).toString(16);
+    return ((a | b) < 0 ? (a | b) + BigInt('4294967296') : a | b)
+        .toString(16)
+        .padStart(8, '0');
 }
 
 function processScheme(
