@@ -2,6 +2,19 @@
 
 All notable changes to the "crc32-opcode-helper" extension will be documented in this file.
 
+## [1.1.2] - 2023-12-22
+
+### Fixed
+
+-   Zero-padding for opcodes to have fixed bit length
+-   Updated regex that finds opcodes in scheme
+
+## [1.1.1] - 2023-07-09
+
+### Added
+
+-   Nothing
+
 ## [1.1.0] - 2023-07-09
 
 ### Added
