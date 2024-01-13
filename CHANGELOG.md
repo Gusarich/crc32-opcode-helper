@@ -2,6 +2,12 @@
 
 All notable changes to the "crc32-opcode-helper" extension will be documented in this file.
 
+## [1.1.2] - 2024-01-14
+
+### Fixed
+
+-   Updated regex in `generateAndCopyOpcodeFuncConsts` to correctly handle multi-line definitions
+
 ## [1.1.2] - 2023-12-22
 
 ### Fixed
