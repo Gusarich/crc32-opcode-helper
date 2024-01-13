@@ -79,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
 
                     let result = '';
                     for (const constructorMatch of scheme.matchAll(
-                        /(\w+#[a-f0-9]{8}).*=\s*(InternalMsgBody)|(ExternalMsgBody);/g
+                        /(\w+#[a-f0-9]{8})[^;]*=\s*(InternalMsgBody)|(ExternalMsgBody);/g
                     )) {
                         if (constructorMatch[1]) {
                             const constructor = constructorMatch[1];
