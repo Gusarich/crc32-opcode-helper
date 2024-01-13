@@ -2,7 +2,7 @@
 
 All notable changes to the "crc32-opcode-helper" extension will be documented in this file.
 
-## [1.1.2] - 2024-01-14
+## [1.1.3] - 2024-01-14
 
 ### Fixed
 
